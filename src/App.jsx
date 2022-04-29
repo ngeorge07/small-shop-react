@@ -26,7 +26,7 @@ function App() {
           setBasket={setBasket}
         />
 
-        <BasketContainer basket={basket} />
+        <BasketContainer basket={basket} setBasket={setBasket} />
       </main>
     </>
   );
