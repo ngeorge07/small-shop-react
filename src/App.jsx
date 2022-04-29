@@ -3,7 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 import ProductList from "./components/ProductList";
-import Basket from "./components/Basket";
+import BasketContainer from "./components/BasketContainer";
 
 function App() {
   const [myProducts, setMyProducts] = useState([]);
@@ -26,9 +26,7 @@ function App() {
           setBasket={setBasket}
         />
 
-        {basket.map((item) => (
-          <Basket {...item} key={item.id} basket={basket} />
-        ))}
+        <BasketContainer basket={basket} />
       </main>
     </>
   );

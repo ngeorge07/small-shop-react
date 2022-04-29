@@ -1,8 +1,11 @@
-export default function Basket({ basket, productdisplayname, count }) {
+import BasketProduct from "./BasketProduct";
+
+export default function Basket({ basket }) {
   return (
     <div>
-      <p>{productdisplayname}</p>
-      <p>{count}</p>
+      {basket.map((item) => (
+        <BasketProduct {...item} key={item.id} />
+      ))}
     </div>
   );
 }

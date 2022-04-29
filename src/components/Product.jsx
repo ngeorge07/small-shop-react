@@ -2,6 +2,8 @@ export default function Product({ basket, setBasket, product }) {
   return (
     <div>
       <p>{product.productdisplayname}</p>
+      <p>{product.price}</p>
+
       <button
         onClick={() => {
           if (basket.find((item) => item.id === product.id)) {
