@@ -3,6 +3,7 @@ import "./App.css";
 import { useEffect, useState } from "react";
 
 import ProductList from "./components/ProductList";
+import Basket from "./components/Basket";
 
 function App() {
   const [myProducts, setMyProducts] = useState([]);
@@ -17,7 +18,13 @@ function App() {
   return (
     <>
       <main>
-        <ProductList myProducts={myProducts} />
+        <ProductList
+          myProducts={myProducts}
+          basket={basket}
+          setBasket={setBasket}
+        />
+
+        <Basket basket={basket} />
       </main>
     </>
   );
