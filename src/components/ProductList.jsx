@@ -1,6 +1,11 @@
 import Product from "./Product";
 
-export default function ProductList({ myProducts, basket, setBasket }) {
+export default function ProductList({
+  myProducts,
+  basket,
+  setBasket,
+  changeCount,
+}) {
   return (
     <section>
       {myProducts.map((product) => (
@@ -9,6 +14,7 @@ export default function ProductList({ myProducts, basket, setBasket }) {
           key={product.id}
           basket={basket}
           setBasket={setBasket}
+          changeCount={changeCount}
         />
       ))}
     </section>

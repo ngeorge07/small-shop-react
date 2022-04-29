@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Basket from "./Basket";
 
-export default function BasketContainer({ basket, setBasket }) {
+export default function BasketContainer({ basket, setBasket, changeCount }) {
   const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(
@@ -19,7 +19,7 @@ export default function BasketContainer({ basket, setBasket }) {
 
   return (
     <>
-      <Basket basket={basket} setBasket={setBasket} />
+      <Basket basket={basket} setBasket={setBasket} changeCount={changeCount} />
       <p>Total price:{totalPrice}</p>
     </>
   );

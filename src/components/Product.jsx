@@ -1,4 +1,4 @@
-export default function Product({ basket, setBasket, product }) {
+export default function Product({ basket, setBasket, product, changeCount }) {
   return (
     <div>
       <p>{product.productdisplayname}</p>
@@ -7,16 +7,7 @@ export default function Product({ basket, setBasket, product }) {
       <button
         onClick={() => {
           if (basket.find((item) => item.id === product.id)) {
-            setBasket((prev) =>
-              prev.map((item) => {
-                if (item.id === product.id) {
-                  const copy = { ...item };
-                  copy.count++;
-                  return copy;
-                }
-                return item;
-              })
-            );
+            changeCount("plus", product.id);
           } else setBasket((prev) => prev.concat(product));
         }}
       >

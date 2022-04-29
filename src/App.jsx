@@ -17,6 +17,23 @@ function App() {
       );
   }, []);
 
+  function changeCount(operator, id) {
+    setBasket((prev) =>
+      prev.map((item) => {
+        if (item.id === id) {
+          const copy = { ...item };
+          operator === "plus"
+            ? copy.count++
+            : copy.count > 1
+            ? copy.count--
+            : copy.count;
+          return copy;
+        }
+        return item;
+      })
+    );
+  }
+
   return (
     <>
       <main>
@@ -24,9 +41,14 @@ function App() {
           myProducts={myProducts}
           basket={basket}
           setBasket={setBasket}
+          changeCount={changeCount}
         />
 
-        <BasketContainer basket={basket} setBasket={setBasket} />
+        <BasketContainer
+          basket={basket}
+          setBasket={setBasket}
+          changeCount={changeCount}
+        />
       </main>
     </>
   );
