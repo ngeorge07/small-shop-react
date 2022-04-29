@@ -13,7 +13,9 @@ export default function BasketProduct({
     <div>
       <p>{productdisplayname}</p>
       <p>{count}</p>
-      <p>Price {price * count}</p>
+      <p>
+        Price: {price} x {count} = {price * count}
+      </p>
 
       <button onClick={() => changeCount("minus", id)}>-</button>
 
