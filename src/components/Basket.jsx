@@ -1,8 +1,8 @@
-export default function Basket({ basket, counter }) {
+export default function Basket({ basket, productdisplayname, count }) {
   return (
     <div>
-      <p>{basket.map((item) => item.id)}</p>
-      <p>{counter}</p>
+      <p>{productdisplayname}</p>
+      <p>{count}</p>
     </div>
   );
 }
