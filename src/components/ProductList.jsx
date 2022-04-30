@@ -7,7 +7,7 @@ export default function ProductList({
   changeCount,
 }) {
   return (
-    <section className="grid grid-cols-responsive gap-12 justify-items-center">
+    <section className="grid grid-cols-responsive gap-12 justify-items-center mx-5">
       {myProducts.map((product) => (
         <Product
           product={product}

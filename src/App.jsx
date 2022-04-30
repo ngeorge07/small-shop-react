@@ -2,16 +2,21 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 
+import Nav from "./components/Nav";
 import ProductList from "./components/ProductList";
 import BasketContainer from "./components/BasketContainer";
-import PaginationBtns from "./components/PaginationBtns";
+import PageBtn from "./components/PageBtn";
 
 function App() {
   const [myProducts, setMyProducts] = useState([]);
   const [basket, setBasket] = useState([]);
   const [page, setPage] = useState(0);
 
+  const [showBasket, setShowBasket] = useState(false);
+
   useEffect(() => {
+    window.scrollTo(0, 0);
+
     fetch(`https://kea-alt-del.dk/t7/api/products/?start=${page}`)
       .then((res) => res.json())
       .then((data) =>
@@ -37,22 +42,57 @@ function App() {
   }
 
   return (
-    <main>
-      <ProductList
-        myProducts={myProducts}
-        basket={basket}
-        setBasket={setBasket}
-        changeCount={changeCount}
-      />
+    <>
+      <header className="flex items-center justify-between px-5 py-5 border-b-2 fixed bg-white w-full">
+        <h1 className="text-2xl">Simple Shop</h1>
+        <Nav basket={basket} setShowBasket={setShowBasket} />
+      </header>
 
-      <BasketContainer
-        basket={basket}
-        setBasket={setBasket}
-        changeCount={changeCount}
-      />
+      <main className="pt-28">
+        {showBasket ? (
+          <BasketContainer
+            basket={basket}
+            setBasket={setBasket}
+            changeCount={changeCount}
+          />
+        ) : (
+          <>
+            <ProductList
+              myProducts={myProducts}
+              basket={basket}
+              setBasket={setBasket}
+              changeCount={changeCount}
+            />
+            <section className="flex justify-between mt-20 border-t-2 border-gray-400 px-5 py-3">
+              <PageBtn
+                text={"First page"}
+                action={() => setPage(0)}
+                disabled={page === 0 ? true : false}
+              />
 
-      <PaginationBtns page={page} setPage={setPage} />
-    </main>
+              <div className="flex gap-12">
+                <PageBtn
+                  text={"Prev page"}
+                  action={() => setPage(page - 10)}
+                  disabled={page === 0 ? true : false}
+                />
+                <PageBtn
+                  text={"Next page"}
+                  action={() => setPage(page + 10)}
+                  disabled={page === 44095 ? true : false}
+                />
+              </div>
+
+              <PageBtn
+                text={"Last page"}
+                action={() => setPage(44095)}
+                disabled={page === 44095 ? true : false}
+              />
+            </section>
+          </>
+        )}
+      </main>
+    </>
   );
 }
 
