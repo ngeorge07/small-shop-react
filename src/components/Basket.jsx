@@ -2,16 +2,16 @@ import BasketProduct from "./BasketProduct";
 
 export default function Basket({ basket, setBasket, changeCount }) {
   return (
-    <div>
+    <article className="flex flex-col gap-12">
       {basket.map((item) => (
         <BasketProduct
-          {...item}
+          product={item}
           key={item.id}
           basket={basket}
           setBasket={setBasket}
           changeCount={changeCount}
         />
       ))}
-    </div>
+    </article>
   );
 }

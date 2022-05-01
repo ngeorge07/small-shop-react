@@ -8,7 +8,12 @@ export default function BasketContainer({ basket, setBasket, changeCount }) {
     () =>
       setTotalPrice(
         basket
-          .map((product) => product.price * product.count)
+          .map((product) =>
+            product.discount
+              ? (product.price - (product.price * product.discount) / 100) *
+                product.count
+              : product.price * product.count
+          )
           .reduce(
             (previousValue, currentValue) => previousValue + currentValue,
             0
@@ -18,9 +23,9 @@ export default function BasketContainer({ basket, setBasket, changeCount }) {
   );
 
   return (
-    <>
+    <section className="max-w-[80%] m-auto">
       <Basket basket={basket} setBasket={setBasket} changeCount={changeCount} />
       <p>Total price:{totalPrice}</p>
-    </>
+    </section>
   );
 }
