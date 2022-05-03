@@ -2,7 +2,7 @@ import BasketProduct from "./BasketProduct";
 
 export default function Basket({ basket, setBasket, changeCount }) {
   return (
-    <article className="flex flex-col gap-12">
+    <article className="flex flex-col gap-12 flex-grow">
       {basket.map((item) => (
         <BasketProduct
           product={item}

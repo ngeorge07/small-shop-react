@@ -43,17 +43,15 @@ function App() {
 
   return (
     <>
-      <header className="flex items-center justify-between px-5 py-5 border-b-2 fixed bg-white w-full">
-        <h1 className="text-2xl">Simple Shop</h1>
-        <Nav basket={basket} setShowBasket={setShowBasket} />
-      </header>
+      <Nav basket={basket} setShowBasket={setShowBasket} />
 
-      <main className="pt-28">
+      <main className="py-28">
         {showBasket ? (
           <BasketContainer
             basket={basket}
             setBasket={setBasket}
             changeCount={changeCount}
+            setShowBasket={setShowBasket}
           />
         ) : (
           <>

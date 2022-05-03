@@ -1,5 +1,3 @@
-import Basket from "./Basket";
-
 export default function BasketProduct({
   basket,
   setBasket,
@@ -19,8 +17,10 @@ export default function BasketProduct({
           <h2 className="text-lg mb-3">{product.productdisplayname}</h2>
           {product.discount ? (
             <p className="text-lg font-bold">
-              {(product.price - (product.price * product.discount) / 100) *
-                product.count.toFixed(2)}
+              {(
+                (product.price - (product.price * product.discount) / 100) *
+                product.count
+              ).toFixed(2)}
               ${" "}
               <span className="text-sm font-normal line-through mr-5 sm:mr-0">
                 {(product.price * product.count).toFixed(2)}$
@@ -36,14 +36,15 @@ export default function BasketProduct({
         <div className="flex gap-4 flex-col sm:flex-row items-center mt-2 sm:mt-0">
           <div className="flex gap-4 items-center">
             <button
-              className="rounded-full border-2 border-gray-400 pt-[0.3rem] pb-[0.6rem] px-[0.5rem] leading-[11px] text-2xl"
+              disabled={product.count <= 1 ? true : false}
+              className="rounded-full border-2 border-gray-400 pt-[0.3rem] pb-[0.6rem] px-[0.5rem] leading-[11px] text-2xl hover:bg-teal-300 transition-all disabled:bg-slate-500"
               onClick={() => changeCount("minus", product.id)}
             >
               -
             </button>
             <span className="text-xl">{product.count}</span>
             <button
-              className="rounded-full border-2 border-gray-400 pt-[0.3rem] pb-[0.6rem] px-[0.3rem] leading-[11px] text-2xl"
+              className="rounded-full border-2 border-gray-400 pt-[0.3rem] pb-[0.6rem] px-[0.3rem] leading-[11px] text-2xl hover:bg-teal-300 transition-all disabled:bg-slate-500"
               onClick={() => changeCount("plus", product.id)}
             >
               +
@@ -54,31 +55,12 @@ export default function BasketProduct({
             onClick={() =>
               setBasket(basket.filter((item) => item.id !== product.id))
             }
-            className="sm:ml-auto sm:mr-10 rounded-full border-2 border-gray-400 py-1 px-3"
+            className="sm:ml-auto sm:mr-10 rounded-full border-2 border-gray-400 py-1 px-3 hover:bg-red-300 transition-all"
           >
             Remove
           </button>
         </div>
       </figcaption>
-
-      {/* <p>{product.productdisplayname}</p>
-      <p>{product.count}</p>
-      <p>
-        Price: {product.price} x {product.count} ={" "}
-        {product.price * product.count}
-      </p>
-
-      <button onClick={() => changeCount("minus", product.id)}>-</button>
-
-      <button onClick={() => changeCount("plus", product.id)}>+</button>
-
-      <button
-        onClick={() =>
-          setBasket(basket.filter((item) => item.id !== product.id))
-        }
-      >
-        Delete
-      </button> */}
     </figure>
   );
 }
